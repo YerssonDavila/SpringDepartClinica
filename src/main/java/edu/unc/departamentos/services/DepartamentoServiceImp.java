@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.unc.departamentos.domain.Departamento;
-import edu.unc.departamentos.domain.Especialidad;
+import edu.unc.departamentos.domain.Area;
 import edu.unc.departamentos.exceptions.EntityNotFoundException;
 import edu.unc.departamentos.exceptions.IllegalOperationException;
 import edu.unc.departamentos.repositories.DepartamentoRepository;
-import edu.unc.departamentos.repositories.EspecialidadRepository;
+import edu.unc.departamentos.repositories.AreaRepository;
 
 @Service
 public class DepartamentoServiceImp implements DepartamentoService {
@@ -21,7 +21,7 @@ public class DepartamentoServiceImp implements DepartamentoService {
 	private DepartamentoRepository depaR;
 
 	@Autowired
-	private EspecialidadRepository espeR;
+	private AreaRepository espeR;
 
 	@Override
 	public List<Departamento> listarDepartameentos() {
@@ -74,7 +74,7 @@ public class DepartamentoServiceImp implements DepartamentoService {
 	public Departamento asignarEspDepa(Long IdDepa, Long IdEspe)
 			throws EntityNotFoundException, IllegalOperationException {
 		// TODO Auto-generated method stub
-		Especialidad espeEntity = espeR.findById(IdEspe).orElseThrow(
+		Area espeEntity = espeR.findById(IdEspe).orElseThrow(
 				() -> new EntityNotFoundException("La especialidad con este id proporcionado no existe en la BD"));
 
 		Departamento depaEntity = depaR.findById(IdDepa).orElseThrow(
