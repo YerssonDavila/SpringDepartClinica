@@ -3,6 +3,8 @@ package edu.unc.departamentos.controllers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import jakarta.validation.Valid;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
@@ -188,5 +190,15 @@ public class DepartamentoController {
 		                .body("Error durante la asignación de especialidad");
 		    }
 	}
+	
+	 @DeleteMapping("deleteMedic/{id}")
+	    public ResponseEntity<?> eliminarMedico(@PathVariable Long id) {
+	        Optional<Departamento> o = depaS.search(id);
+	        if (o.isPresent()) {
+	            depaS.eliminarMedico(id);
+	            return ResponseEntity.noContent().build();
+	        }
+	        return ResponseEntity.notFound().build();
+	    }
 
 }

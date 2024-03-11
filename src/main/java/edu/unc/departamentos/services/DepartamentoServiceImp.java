@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.unc.departamentos.domain.Departamento;
+import edu.unc.departamentos.clients.MedicoClientRest;
 import edu.unc.departamentos.domain.Area;
 import edu.unc.departamentos.exceptions.EntityNotFoundException;
 import edu.unc.departamentos.exceptions.IllegalOperationException;
@@ -23,6 +24,9 @@ public class DepartamentoServiceImp implements DepartamentoService {
 	@Autowired
 	private AreaRepository espeR;
 
+	@Autowired
+	private MedicoClientRest medClient;
+	
 	@Override
 	public List<Departamento> listarDepartameentos() {
 		// TODO Auto-generated method stub
@@ -85,6 +89,18 @@ public class DepartamentoServiceImp implements DepartamentoService {
 
 		return depaEntity;
 
+	}
+	
+	@Override
+    @Transactional
+    public void eliminarMedico(Long id) {
+		medClient.eliminarMedicoDepaPorId(id);
+	}
+
+	@Override
+	public Optional<Departamento> search(Long IdDepa) {
+		return depaR.findById(IdDepa);
+		
 	}
 
 }
