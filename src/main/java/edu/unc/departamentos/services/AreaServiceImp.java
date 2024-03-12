@@ -1,3 +1,9 @@
+/*
+ * @file AreaServiceImp.java
+ * @Autor Yersson.C.D(c)2024
+ * @Created 12 mar 2024, 1:59:08
+ *  
+ */
 package edu.unc.departamentos.services;
 
 import java.util.List;
@@ -12,12 +18,22 @@ import edu.unc.departamentos.exceptions.EntityNotFoundException;
 import edu.unc.departamentos.exceptions.IllegalOperationException;
 import edu.unc.departamentos.repositories.AreaRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AreaServiceImp.
+ */
 @Service
 public class AreaServiceImp implements AreaService {
 
+	/** The area R. */
 	@Autowired
 	private AreaRepository areaR;
 
+	/**
+	 * Listar areas.
+	 *
+	 * @return the list
+	 */
 	@Override
 	@Transactional
 	public List<Area> listarAreas() {
@@ -25,6 +41,13 @@ public class AreaServiceImp implements AreaService {
 		return areaR.findAll();
 	}
 
+	/**
+	 * Buscar area by id.
+	 *
+	 * @param IdArea the id area
+	 * @return the area
+	 * @throws EntityNotFoundException the entity not found exception
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Area buscarAreaById(Long IdArea) throws EntityNotFoundException {
@@ -33,6 +56,13 @@ public class AreaServiceImp implements AreaService {
 
 	}
 
+	/**
+	 * Grabar area.
+	 *
+	 * @param area the area
+	 * @return the area
+	 * @throws IllegalOperationException the illegal operation exception
+	 */
 	@Override
 	@Transactional
 	public Area grabarArea(Area area) throws IllegalOperationException {
@@ -40,6 +70,15 @@ public class AreaServiceImp implements AreaService {
 		return areaR.save(area);
 	}
 
+	/**
+	 * Actualizar area.
+	 *
+	 * @param IdArea the id area
+	 * @param area the area
+	 * @return the area
+	 * @throws EntityNotFoundException the entity not found exception
+	 * @throws IllegalOperationException the illegal operation exception
+	 */
 	@Override
 	@Transactional
 	public Area actualizarArea(Long IdArea, Area area)
@@ -49,6 +88,13 @@ public class AreaServiceImp implements AreaService {
 		return areaR.save(area);
 	}
 
+	/**
+	 * Eliminar area.
+	 *
+	 * @param IdArea the id area
+	 * @throws EntityNotFoundException the entity not found exception
+	 * @throws IllegalOperationException the illegal operation exception
+	 */
 	@Override
 	@Transactional
 	public void eliminarArea(Long IdArea) throws EntityNotFoundException, IllegalOperationException {
