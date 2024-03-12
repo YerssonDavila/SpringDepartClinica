@@ -1,3 +1,9 @@
+/*
+ * @file Area.java
+ * @Autor Yersson.C.D(c)2024
+ * @Created 12 mar 2024, 1:57:00
+ *  
+ */
 package edu.unc.departamentos.domain;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -11,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
+// TODO: Auto-generated Javadoc
 /**
  * Clase que representa una especialidad en el sistema.
  */
@@ -18,6 +25,7 @@ import lombok.Data;
 @Data
 public class Area extends RepresentationModel<Area> {
 
+	/** The Id area. */
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long IdArea;
