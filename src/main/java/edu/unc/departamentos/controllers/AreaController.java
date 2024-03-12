@@ -1,3 +1,9 @@
+/*
+ * @file AreaController.java
+ * @Autor Yersson.C.D(c)2024
+ * @Created 12 mar 2024, 2:00:29
+ *  
+ */
 package edu.unc.departamentos.controllers;
 
 import java.util.HashMap;
@@ -29,6 +35,7 @@ import edu.unc.departamentos.services.AreaService;
 import edu.unc.departamentos.util.ApiResponse;
 import jakarta.validation.Valid;
 
+// TODO: Auto-generated Javadoc
 /**
  * Controlador para gestionar las operaciones relacionadas con las especialidades.
  */
@@ -36,12 +43,20 @@ import jakarta.validation.Valid;
 @RequestMapping(value="api/areas", headers = "Api-Version=1")
 public class AreaController {
 
+	/** The area S. */
 	@Autowired
 	private AreaService areaS;	
+	
+	/** The model mapper. */
 	@Autowired
 	private ModelMapper modelMapper;
 	
 
+	/**
+	 * Obtener areas.
+	 *
+	 * @return the response entity
+	 */
 	@GetMapping
 	public ResponseEntity<?> obtenerAreas() {
 		List<Area> area = areaS.listarAreas();
@@ -59,6 +74,13 @@ public class AreaController {
             return new ResponseEntity<>(area, HttpStatus.OK);
 	}
 
+	/**
+	 * Obtener area por id.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 * @throws EntityNotFoundException the entity not found exception
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<?> obtenerAreaPorId(@PathVariable Long id) throws EntityNotFoundException {
 
@@ -69,6 +91,14 @@ public class AreaController {
 		return ResponseEntity.ok(response);
 	}
 
+	/**
+	 * Guardar area.
+	 *
+	 * @param area the area
+	 * @param result the result
+	 * @return the response entity
+	 * @throws IllegalOperationException the illegal operation exception
+	 */
 	@PostMapping
 	public ResponseEntity<?> guardarArea(@Valid @RequestBody Area area, BindingResult result)
 			throws IllegalOperationException {
@@ -84,6 +114,16 @@ public class AreaController {
 	}
 
 	
+	/**
+	 * Actualizar area.
+	 *
+	 * @param areaDto the area dto
+	 * @param result the result
+	 * @param id the id
+	 * @return the response entity
+	 * @throws EntityNotFoundException the entity not found exception
+	 * @throws IllegalOperationException the illegal operation exception
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<ApiResponse<AreaDTO>> actualizarArea(@Valid @RequestBody AreaDTO areaDto,
 			BindingResult result, @PathVariable Long id) throws EntityNotFoundException, IllegalOperationException {
@@ -97,6 +137,14 @@ public class AreaController {
 	}
 	
 	
+	/**
+	 * Eliminar area.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 * @throws EntityNotFoundException the entity not found exception
+	 * @throws IllegalOperationException the illegal operation exception
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminarArea(@PathVariable Long id)
 			throws EntityNotFoundException, IllegalOperationException {
@@ -105,6 +153,12 @@ public class AreaController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}	
 	
+	/**
+	 * Validar.
+	 *
+	 * @param result the result
+	 * @return the response entity
+	 */
 	private ResponseEntity<?> validar(BindingResult result) {
 		// TODO Auto-generated method stub
 		Map<String, String> errores = new HashMap<>();

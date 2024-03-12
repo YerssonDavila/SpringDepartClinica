@@ -1,3 +1,9 @@
+/*
+ * @file DepartamentoController.java
+ * @Autor Yersson.C.D(c)2024
+ * @Created 12 mar 2024, 2:00:25
+ *  
+ */
 package edu.unc.departamentos.controllers;
 
 import java.util.HashMap;
@@ -35,6 +41,7 @@ import edu.unc.departamentos.exceptions.IllegalOperationException;
 import edu.unc.departamentos.services.DepartamentoService;
 import edu.unc.departamentos.util.ApiResponse;
 
+// TODO: Auto-generated Javadoc
 /**
  * Controlador para gestionar las operaciones relacionadas con los
  * departamentos.
@@ -44,9 +51,11 @@ import edu.unc.departamentos.util.ApiResponse;
 @JsonPropertyOrder({ "IdDepartamento", "nombreDepartamento", "especialidades" })
 public class DepartamentoController {
 
+	/** The depa S. */
 	@Autowired
 	private DepartamentoService depaS;
 
+	/** The model mapper. */
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -204,6 +213,12 @@ public class DepartamentoController {
 		}
 	}
 
+	/**
+	 * Eliminar medico.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@DeleteMapping("deleteMedic/{id}")
 	public ResponseEntity<?> eliminarMedico(@PathVariable Long id) {
 		Optional<Departamento> o = depaS.search(id);
